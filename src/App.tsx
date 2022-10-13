@@ -3,55 +3,87 @@ import { Checkbox } from "./components/Checkbox";
 import { Text } from "./components/Text";
 import { TextInput } from "./components/TextInput";
 import "./styles/global.css";
-import { Envelope, Password } from "phosphor-react";
+import { Envelope, Lock, Password } from "phosphor-react";
 import { ReactNode } from "react";
+import { Logo } from "./Logo";
+import { Heading } from "./components/Heading";
 export function App() {
     return (
-        <div className="h-screen w-screen flex-col text-center flex justify-center items-center bg-gray-900">
-            <BoxCard>
-                <BoxCard>
-                    <Text size="sm">Text Small</Text>
-                </BoxCard>
-                <BoxCard>
-                    <Text size="md">Text Medium</Text>
-                </BoxCard>
-                <BoxCard>
-                    <Text size="lg">Text Large</Text>
-                </BoxCard>
+        <div className="h-screen w-screen flex-col flex justify-center text-gray-100 items-center bg-gray-900">
+            <header className="flex flex-col items-center">
+                <Logo />
 
-                <BoxCard>
+                <Heading size="lg" className="mt-4">
+                    Ignite Lab
+                </Heading>
+                <Text size="lg" className="text-gray-400 mt-1">
+                    Faça login e comece a usar
+                </Text>
+            </header>
+
+            <form className="flex flex-col items-stretch w-full max-w-sm mt-10 gap-4">
+                <label htmlFor="email" className="flex flex-col gap-3">
+                    <Text className="font-semibold">Endereço de e-mail</Text>
                     <TextInput.Root>
                         <TextInput.Icon>
                             <Envelope />
                         </TextInput.Icon>
-                        <TextInput.Input placeholder="Digite seu e-mail" />
-                    </TextInput.Root>
-                </BoxCard>
-
-                <BoxCard>
-                    <TextInput.Root>
                         <TextInput.Input
-                            type="password"
-                            placeholder="Digite sua senha"
+                            id="email"
+                            placeholder="Digite seu e-mail"
                         />
                     </TextInput.Root>
-                </BoxCard>
-                <BoxCard>
-                    <div className="flex items-center gap-2">
-                        <Checkbox /> <Text size="sm">Lembrar da senha</Text>
-                    </div>
-                </BoxCard>
-                <BoxCard>
-                    <Button>Submit</Button>
-                </BoxCard>
-            </BoxCard>
+                </label>
+
+                <label htmlFor="password" className="flex flex-col gap-3">
+                    <Text className="font-semibold">Sua senha</Text>
+                    <TextInput.Root>
+                        <TextInput.Icon>
+                            <Lock />
+                        </TextInput.Icon>
+                        <TextInput.Input
+                            type="password"
+                            id="password"
+                            placeholder="******"
+                        />
+                    </TextInput.Root>
+                </label>
+
+                <label htmlFor="remember" className="flex items-center gap-2">
+                    <Checkbox id="remember" />
+                    <Text size="sm" className="text-gray-200">
+                        Lembrar de mim por 30 dias
+                    </Text>
+                </label>
+
+                <Button className="mt-4" type="submit">
+                    Entrar na plataforma
+                </Button>
+            </form>
+
+            <footer className="flex flex-col items-center gap-4 mt-8">
+                <Text asChild>
+                    <a
+                        href=""
+                        className="text-gray-400 hover:underline hover:text-gray-200"
+                    >
+                        Esqueceu sua senha?
+                    </a>
+                </Text>
+
+                <Text asChild>
+                    <a
+                        href=""
+                        className="text-gray-400 hover:underline hover:text-gray-200"
+                    >
+                        Não possuí conta? crie uma agora!
+                    </a>
+                </Text>
+            </footer>
         </div>
     );
 }
 
 interface BoxCardProps {
     children: ReactNode;
-}
-function BoxCard({ children }: BoxCardProps) {
-    return <div className="flex flex-col p-2 m-2">{children}</div>;
 }
