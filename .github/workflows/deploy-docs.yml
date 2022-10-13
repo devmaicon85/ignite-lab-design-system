@@ -3,7 +3,7 @@ name: Deploy Storybook
 on:
   push:
     branches:
-      - default
+      - devmaicon
 
 jobs:
   build-and-deploy:
